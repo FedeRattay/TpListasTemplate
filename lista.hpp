@@ -6,7 +6,7 @@ class Lista
 {
 	private:
 		//Primer elemento de la lista
-		Nodo<Dato>* primero;
+		Nodo<Dato>* head;
 		//Tamanio de la lista
 		int tamanio;
 		//Obtener nodo en una posicion
@@ -41,6 +41,55 @@ class Lista
 		~Lista();
 };
 
+//Constructor
+template < typename Dato >
+Lista<Dato>::Lista(){
+	head = NULL;
+	tamanio = 0;
+}
+//Obtener Nodo
+template < typename Dato >
+Nodo<Dato>* Lista<Dato>::obtenerNodo(int posicion){
+	Nodo<Dato>* actual = head;
+    for (int i = 1; i < posicion; i++)
+    {
+        actual = actual->obtenerSiguiente();
+    }
+    return actual;
+}
+//Obtener tamanio
+template < typename Dato >
+int Lista<Dato>::obtenerTamanio(){
+	return tamanio;
+}
+//Agregar un nodo con un dato a la lista
+template < typename Dato >
+void Lista<Dato>::agregar(Dato* unDato){
+	Nodo<Dato>* nuevo = new Nodo(unDato);
+	if(estaVacia())
+		head = nuevo;
+	else{
+		nuevo->asignarSiguiente(head);
+		head = nuevo;
+	}
+	tamanio++;
+}
 
+template < typename Dato >
+Lista<Dato>::~Lista(){
+	while(tamanio > 0){
+		Nodo<Dato>* iterador = head;
+		Dato* datoActual = iterador -> obtenerDato();
+		delete datoActual;
+		head -> asignarSiguiente(iterador -> obtenerSiguiente());
+		delete iterador;
+		tamanio--;
+	}
+}
 
+template < typename Dato >
+Dato* Lista<Dato>::consultar(int posicion){
+	Nodo<Dato> *consultado = obtenerNodo(posicion);
+    return consultado->obtenerElemento();
+}
 #endif
