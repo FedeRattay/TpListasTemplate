@@ -1,5 +1,7 @@
 #ifndef NODO_HPP
 #define NODO_HPP
+#include <iostream>
+using namespace std;
 template<typename Dato>
 class Nodo
 {
