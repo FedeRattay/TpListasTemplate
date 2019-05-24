@@ -1,5 +1,25 @@
 #include "pelicula.hpp"
 
+Pelicula::Pelicula()
+{
+	nombre = "";
+	genero = "";
+	puntaje = 0;
+	director = "";
+	actores = NULL;
+}
+Pelicula::Pelicula(string _nombre,string _genero,int _puntaje,string _director)
+{
+	nombre = _nombre;
+	genero = _genero;
+	puntaje = _puntaje;
+	director = _director;
+	actores = NULL;
+}
+Pelicula::~Pelicula()
+{
+	delete actores;
+}
 void Pelicula::asignarNombre(string _nombre)
 {
 	nombre = _nombre;
