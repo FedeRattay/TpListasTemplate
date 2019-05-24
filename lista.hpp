@@ -1,6 +1,9 @@
 #ifndef LISTA_HPP
 #define LISTA_HPP
 #include "nodo.hpp"
+#include <string>
+#include <iostream>
+using namespace std;
 template < typename Dato >
 class Lista
 {
@@ -62,6 +65,11 @@ template < typename Dato >
 int Lista<Dato>::obtenerTamanio(){
 	return tamanio;
 }
+//Verifica si la lista esta vacia
+template < typename Dato >
+bool Lista<Dato>::estaVacia(){
+	return ( head == NULL ? true : false );
+}
 //Agregar un nodo con un dato a la lista
 template < typename Dato >
 void Lista<Dato>::agregar(Dato* unDato){
@@ -90,6 +98,7 @@ Lista<Dato>::~Lista(){
 template < typename Dato >
 Dato* Lista<Dato>::consultar(int posicion){
 	Nodo<Dato> *consultado = obtenerNodo(posicion);
-    return consultado->obtenerElemento();
+    return consultado->obtenerDato();
 }
+
 #endif
