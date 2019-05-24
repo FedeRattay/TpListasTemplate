@@ -90,6 +90,6 @@ Lista<Dato>::~Lista(){
 template < typename Dato >
 Dato* Lista<Dato>::consultar(int posicion){
 	Nodo<Dato> *consultado = obtenerNodo(posicion);
-    return consultado->obtenerElemento();
+    return consultado->obtenerDato();
 }
 #endif
