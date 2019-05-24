@@ -1,6 +1,5 @@
 #ifndef NODO_HPP
 #define NODO_HPP
-#include "persona.hpp"
 template<typename Dato>
 class Nodo
 {
