@@ -56,9 +56,9 @@ int Pelicula::obtenerPuntaje()
 {
 		return director;
 }
-string Pelicula::obtenerActor(int posicion)
+Lista<string>* Pelicula::obtenerActores()
 {
-	return *(actores->consultar(posicion));
+	return (actores);
 }
 
 void Pelicula::mostrarPelicula()
@@ -68,8 +68,9 @@ void Pelicula::mostrarPelicula()
 	cout<<"Puntaje: "<<puntaje<<endl;
 	cout<<"Director: "<<director<<endl;
 	cout<<"Actores: ";
-	for(int i = 0; i<actores->obtenerTamanio(); i++)
-	{	string nombre = obtenerActor(i);
+	for(int i = 1; i <= actores->obtenerTamanio(); i++)
+	{	
+		string nombre = *(actores->consultar(i));
 		cout<<nombre<<endl;
 	}
 	cout<<"---------------------------------------"<<endl;

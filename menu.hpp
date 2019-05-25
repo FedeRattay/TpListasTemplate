@@ -16,6 +16,8 @@ class Menu
         void darBajaPeliculas(Lista<Pelicula>*);
         void argregarPeliculas(Lista<Pelicula>*);
         Lista<Pelicula>* crearPeliculasRecomendadas(Lista<Pelicula>*,Lista<Pelicula>*);
+		void cargarActores(ifstream&,Pelicula*);
+
 		
 	public:
 		void mostrarMenu();

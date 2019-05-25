@@ -29,7 +29,7 @@ class Pelicula
 		string obtenerGenero();
 		int obtenerPuntaje();
 		string obtenerDirector();
-		string obtenerActor(int posicion);
+		Lista<string>* obtenerActores();
 		void mostrarPelicula();
 		
 };

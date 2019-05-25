@@ -30,6 +30,7 @@ void Menu::mostrarMenu()
             cout<<"Opcion incorrecta"<<endl;
         } 
     }
+    cin.clear();
 }
 
 void Menu::ejecutarOpcion(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peliculasNoVistas,Lista<Pelicula>* peliculasRecomendadas)
@@ -38,7 +39,6 @@ void Menu::ejecutarOpcion(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peli
     {
     case 1:{
 
-            string nombre = peliculasVistas->consultar(0)->obtenerActor(0);
             mostrarPeliculas(peliculasVistas);
         break;
     }
@@ -56,7 +56,7 @@ void Menu::ejecutarOpcion(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peli
 
 void Menu::mostrarPeliculas(Lista<Pelicula>* peliculas)
 {
-    for(int i = 0; i < peliculas->obtenerTamanio(); i++)
+    for(int i = 1; i <= peliculas->obtenerTamanio(); i++)
     {
         peliculas->consultar(i)->mostrarPelicula();
     }
@@ -98,14 +98,13 @@ void Menu::cargarDesdeArchivo(Lista<Pelicula>* peliculas)
 		string newNombre;
 		string newGenero;
 		string newDirector;
-		string newActor;
+
 		string newPuntajeStr;
 		int newPuntaje;
-		bool finP = false;
-		bool finA = false;
 		
-		while(getline(listaPeliculas, newNombre,'\n')&&(!finP))
+		while(listaPeliculas.good())
 		{
+            getline(listaPeliculas, newNombre,'\n');
 			if(newNombre != "")
 			{
 				getline(listaPeliculas, newGenero,'\n');
@@ -114,19 +113,12 @@ void Menu::cargarDesdeArchivo(Lista<Pelicula>* peliculas)
 				
 				newPuntaje = stoi(newPuntajeStr);
 				Pelicula* peliculaNueva = new Pelicula(newNombre,newGenero,newPuntaje,newDirector);
-				
-				while((getline(listaPeliculas, newActor, '\t'))&&(!finA))
-				{
-					if(newActor != "\n")
-						peliculaNueva->asignarActor(newActor);
-					else
-						finA = true;
-				}
-				finA = false;
+                while(listaPeliculas.peek() != '\n')
+                {
+                    cargarActores(listaPeliculas,peliculaNueva);
+                }
 				peliculas->agregar(peliculaNueva);
 			}
-			else
-				finP = true;
 		}
 	}
 }
@@ -144,4 +136,11 @@ void Menu::ingresarOpcion(int opcion)
 int Menu::obtenerOpcion()
 {
     return opcion;
+}
+
+void Menu::cargarActores(ifstream& listaDePeliculas,Pelicula* peliculaNueva)
+{
+    string newActor;
+    listaDePeliculas >> newActor;
+    peliculaNueva->asignarActor(newActor);
 }
