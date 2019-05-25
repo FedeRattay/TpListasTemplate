@@ -30,6 +30,7 @@ class Pelicula
 		int obtenerPuntaje();
 		string obtenerDirector();
 		string obtenerActor(int posicion);
+		void mostrarPelicula();
 		
 };
 
