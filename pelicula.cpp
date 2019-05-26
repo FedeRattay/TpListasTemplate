@@ -8,7 +8,7 @@ Pelicula::Pelicula()
 	director = "";
 	actores = new Lista<string>();
 }
-Pelicula::Pelicula(string _nombre,string _genero,int _puntaje,string _director)
+Pelicula::Pelicula(string _nombre, string _genero, int _puntaje, string _director)
 {
 	nombre = _nombre;
 	genero = _genero;
@@ -36,7 +36,7 @@ void Pelicula::asignarDirector(string _director)
 {
 	director = _director;
 }
-void Pelicula::asignarActor(string* _actor)
+void Pelicula::asignarActor(string *_actor)
 {
 	actores->agregar(_actor);
 }
@@ -50,28 +50,28 @@ string Pelicula::obtenerGenero()
 }
 int Pelicula::obtenerPuntaje()
 {
-		return puntaje;
+	return puntaje;
 }
-	string Pelicula::obtenerDirector()
+string Pelicula::obtenerDirector()
 {
-		return director;
+	return director;
 }
-Lista<string>* Pelicula::obtenerActores()
+Lista<string> *Pelicula::obtenerActores()
 {
 	return (actores);
 }
 
 void Pelicula::mostrarPelicula()
 {
-	cout<<"Pelicula: "<<nombre<<endl;
-	cout<<"Genero: "<<genero<<endl;
-	cout<<"Puntaje: "<<puntaje<<endl;
-	cout<<"Director: "<<director<<endl;
-	cout<<"Actores: "<<endl;
-	for(int i = 1; i <= actores->obtenerTamanio(); i++)
-	{	
-		cout<<'\t';
-		cout<< *(actores->consultar(i))<<endl;
+	cout << "Pelicula: " << nombre << endl;
+	cout << "Genero: " << genero << endl;
+	cout << "Puntaje: " << puntaje << endl;
+	cout << "Director: " << director << endl;
+	cout << "Actores: " << endl;
+	for (int i = 1; i <= actores->obtenerTamanio(); i++)
+	{
+		cout << '\t';
+		cout << *(actores->consultar(i)) << endl;
 	}
-	cout<<"---------------------------------------"<<endl;
+	cout << "---------------------------------------" << endl;
 }
