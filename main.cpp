@@ -7,7 +7,9 @@ int main()
     Lista<Pelicula>* peliculasNoVistas = new Lista<Pelicula>;
     Lista<Pelicula>* peliculasRecomendas = new Lista<Pelicula>;
     Menu menuNuevo;
+    cout<<"Peliculas vistas: "<<endl;
     menuNuevo.cargarDesdeArchivo(peliculasVistas);
+    cout<<"Peliculas no vistas: "<<endl;
     menuNuevo.cargarDesdeArchivo(peliculasNoVistas);
 
 	while (!menuNuevo.obtenerSalir())

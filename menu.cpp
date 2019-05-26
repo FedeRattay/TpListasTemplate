@@ -46,7 +46,7 @@ void Menu::ejecutarOpcion(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peli
             mostrarPeliculas(peliculasNoVistas);
         break;
     case 3:
-            peliculasRecomendadas = crearPeliculasRecomendadas(peliculasVistas,peliculasNoVistas);
+            crearPeliculasRecomendadas(peliculasVistas,peliculasNoVistas,peliculasRecomendadas);
             mostrarPeliculas(peliculasRecomendadas);
         break;
     case 4:
@@ -56,30 +56,39 @@ void Menu::ejecutarOpcion(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peli
 
 void Menu::mostrarPeliculas(Lista<Pelicula>* peliculas)
 {
-    for(int i = 1; i <= peliculas->obtenerTamanio(); i++)
+    if(peliculas->estaVacia())
     {
+        cout<<"La lista esta vacia"<<endl;
+    }
+    else
+    {
+        for(int i = 1; i <= peliculas->obtenerTamanio(); i++)
+        {
         peliculas->consultar(i)->mostrarPelicula();
+        }
     }
 }
 
-Lista<Pelicula>* Menu::crearPeliculasRecomendadas(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peliculasNoVistas)
+void Menu::crearPeliculasRecomendadas(Lista<Pelicula>* peliculasVistas,Lista<Pelicula>* peliculasNoVistas,Lista<Pelicula>* peliculasRecomendadas)
 {
-    Lista<Pelicula>* peliculasRecomendadas = new Lista<Pelicula>;
-    for(int i  = 0;i<peliculasVistas->obtenerTamanio();i++)
+    for(int i  = 1;i<=peliculasVistas->obtenerTamanio();i++)
     {
         string generoVisto = peliculasVistas->consultar(i)->obtenerGenero();
         string directorVisto = peliculasVistas->consultar(i)->obtenerDirector();
-        for (int j = 0; j< peliculasNoVistas->obtenerTamanio(); i++)
+        Lista<string>* actoresVisto = peliculasVistas->consultar(i)->obtenerActores();
+        for (int j = 1; j<= peliculasNoVistas->obtenerTamanio(); j++)
         {   
             string generoNoVisto = peliculasNoVistas->consultar(j)->obtenerGenero();
             string directorNoVisto = peliculasNoVistas->consultar(j)->obtenerDirector();
-            if(generoVisto == generoNoVisto || directorVisto == directorNoVisto)
+            int puntajeNoVisto = peliculasNoVistas->consultar(j)->obtenerPuntaje();
+            Lista<string>* actoresNoVisto = peliculasNoVistas->consultar(i)->obtenerActores();
+            bool coincidencia = obteneCoincidenciaDeActores(actoresVisto,actoresNoVisto);
+            if((generoVisto == generoNoVisto || directorVisto == directorNoVisto || coincidencia) && puntajeNoVisto >= 7)
             {
                 peliculasRecomendadas->agregar(peliculasNoVistas->consultar(j));
             }
         }
     }
-    return peliculasRecomendadas;
 }
 
 void Menu::cargarDesdeArchivo(Lista<Pelicula>* peliculas)
@@ -138,4 +147,22 @@ void Menu::ingresarOpcion(int opcion)
 int Menu::obtenerOpcion()
 {
     return opcion;
+}
+
+bool Menu::obteneCoincidenciaDeActores(Lista<string>* actoresVisto,Lista<string>* actoresNoVistos)
+{
+    bool coincidencia = false;
+    for(int i = 1; i<=actoresVisto->obtenerTamanio();i++)
+    {
+        string* actorVisto = actoresVisto->consultar(i);
+        for(int j=1; j<=actoresNoVistos->obtenerTamanio();j++)
+        {
+            string* actorNoVisto = actoresNoVistos->consultar(j);
+            if(actorVisto == actorNoVisto)
+            {
+                return coincidencia = true;
+            }
+        }
+    }
+    return coincidencia;
 }
