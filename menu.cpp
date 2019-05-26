@@ -115,7 +115,9 @@ void Menu::cargarDesdeArchivo(Lista<Pelicula>* peliculas)
 				Pelicula* peliculaNueva = new Pelicula(newNombre,newGenero,newPuntaje,newDirector);
                 while(listaPeliculas.peek() != '\n')
                 {
-                    cargarActores(listaPeliculas,peliculaNueva);
+                    string* newActor = new string();
+                    listaPeliculas >> *newActor;
+                    peliculaNueva->asignarActor(newActor);
                 }
 				peliculas->agregar(peliculaNueva);
 			}
@@ -136,11 +138,4 @@ void Menu::ingresarOpcion(int opcion)
 int Menu::obtenerOpcion()
 {
     return opcion;
-}
-
-void Menu::cargarActores(ifstream& listaDePeliculas,Pelicula* peliculaNueva)
-{
-    string newActor;
-    listaDePeliculas >> newActor;
-    peliculaNueva->asignarActor(newActor);
 }

@@ -36,9 +36,9 @@ void Pelicula::asignarDirector(string _director)
 {
 	director = _director;
 }
-void Pelicula::asignarActor(string _actor)
+void Pelicula::asignarActor(string* _actor)
 {
-	actores->agregar(&(_actor));
+	actores->agregar(_actor);
 }
 string Pelicula::obtenerNombre()
 {
@@ -67,11 +67,11 @@ void Pelicula::mostrarPelicula()
 	cout<<"Genero: "<<genero<<endl;
 	cout<<"Puntaje: "<<puntaje<<endl;
 	cout<<"Director: "<<director<<endl;
-	cout<<"Actores: ";
+	cout<<"Actores: "<<endl;
 	for(int i = 1; i <= actores->obtenerTamanio(); i++)
 	{	
-		string nombre = *(actores->consultar(i));
-		cout<<nombre<<endl;
+		cout<<'\t';
+		cout<< *(actores->consultar(i))<<endl;
 	}
 	cout<<"---------------------------------------"<<endl;
 }

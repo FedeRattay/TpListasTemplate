@@ -24,7 +24,7 @@ class Pelicula
 		void asignarGenero(string _genero);
 		void asignarPuntaje(int _puntaje);
 		void asignarDirector(string _director);
-		void asignarActor(string _actor);
+		void asignarActor(string* _actor);
 		string obtenerNombre();
 		string obtenerGenero();
 		int obtenerPuntaje();

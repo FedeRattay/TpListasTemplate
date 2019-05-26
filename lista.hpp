@@ -89,7 +89,7 @@ Lista<Dato>::~Lista(){
 		Nodo<Dato>* iterador = head;
 		Dato* datoActual = iterador -> obtenerDato();
 		delete datoActual;
-		head -> asignarSiguiente(iterador -> obtenerSiguiente());
+		head  = (iterador -> obtenerSiguiente());
 		delete iterador;
 		tamanio--;
 	}
