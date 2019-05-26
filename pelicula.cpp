@@ -6,7 +6,7 @@ Pelicula::Pelicula()
 	genero = "";
 	puntaje = 0;
 	director = "";
-	actores = NULL;
+	actores = new Lista<string>();
 }
 Pelicula::Pelicula(string _nombre,string _genero,int _puntaje,string _director)
 {
@@ -14,7 +14,7 @@ Pelicula::Pelicula(string _nombre,string _genero,int _puntaje,string _director)
 	genero = _genero;
 	puntaje = _puntaje;
 	director = _director;
-	actores = NULL;
+	actores = new Lista<string>();
 }
 Pelicula::~Pelicula()
 {
@@ -36,9 +36,9 @@ void Pelicula::asignarDirector(string _director)
 {
 	director = _director;
 }
-void Pelicula::asignarActor(string _actor)
+void Pelicula::asignarActor(string* _actor)
 {
-	actores->agregar(&(_actor));
+	actores->agregar(_actor);
 }
 string Pelicula::obtenerNombre()
 {
@@ -56,7 +56,22 @@ int Pelicula::obtenerPuntaje()
 {
 		return director;
 }
-string Pelicula::obtenerActor(int posicion)
+Lista<string>* Pelicula::obtenerActores()
 {
-	return *(actores->consultar(posicion));
+	return (actores);
+}
+
+void Pelicula::mostrarPelicula()
+{
+	cout<<"Pelicula: "<<nombre<<endl;
+	cout<<"Genero: "<<genero<<endl;
+	cout<<"Puntaje: "<<puntaje<<endl;
+	cout<<"Director: "<<director<<endl;
+	cout<<"Actores: "<<endl;
+	for(int i = 1; i <= actores->obtenerTamanio(); i++)
+	{	
+		cout<<'\t';
+		cout<< *(actores->consultar(i))<<endl;
+	}
+	cout<<"---------------------------------------"<<endl;
 }
