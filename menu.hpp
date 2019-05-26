@@ -13,8 +13,6 @@ class Menu
 		bool salir;
 
 		void mostrarPeliculas(Lista<Pelicula>*);
-        void darBajaPeliculas(Lista<Pelicula>*);
-        void argregarPeliculas(Lista<Pelicula>*);
 		//pre:Se ingresan dos listas.
 		//pos:crea una lista de peliculas recomendadas a partir de la coincidencia de datos especificos.
         void crearPeliculasRecomendadas(Lista<Pelicula>*,Lista<Pelicula>*,Lista<Pelicula>*);
