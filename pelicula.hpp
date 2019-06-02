@@ -6,7 +6,6 @@
 using namespace std;
 #include "lista.hpp"
 
-
 class Pelicula
 {
 	private:
@@ -14,24 +13,24 @@ class Pelicula
 		string genero;
 		int puntaje;
 		string director;
-		Lista<string>* actores;
+		Lista<string> *actores;
+
 	public:
 		Pelicula();
-		Pelicula(string _nombre,string _genero,int _puntaje,string _director);
+		Pelicula(string _nombre, string _genero, int _puntaje, string _director);
 		~Pelicula();
 
 		void asignarNombre(string _nombre);
 		void asignarGenero(string _genero);
 		void asignarPuntaje(int _puntaje);
 		void asignarDirector(string _director);
-		void asignarActor(string* _actor);
+		void asignarActor(string *_actor);
 		string obtenerNombre();
 		string obtenerGenero();
 		int obtenerPuntaje();
 		string obtenerDirector();
-		Lista<string>* obtenerActores();
+		Lista<string> *obtenerActores();
 		void mostrarPelicula();
-		
 };
 
 #endif
